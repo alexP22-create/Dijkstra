@@ -1,5 +1,10 @@
 Postolache Alexandru-Gabriel
 			
+map.in is the input file and map.out is the output file.
+	In the output file the program will write the wanted path
+and the lowest cost to travel it if the destination point
+and the starting point are connected.
+			
 Mai intai voi explica conceptele de poo:
 	1) mostenirea: Am luat clasele Bicycle, Truck, Car
 si Motorcycle care mostenesc clasa Vehicle, cat si clasele
