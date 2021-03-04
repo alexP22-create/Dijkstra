@@ -1,6 +1,8 @@
 Postolache Alexandru-Gabriel
 			
 map.in is the input file and map.out is the output file.
+map1.in, map2.in, ..., map8.in are different input to test
+the code.
 	In the output file the program will write the wanted path
 and the lowest cost to travel it if the destination point
 and the starting point are connected.
