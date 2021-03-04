@@ -1,0 +1,96 @@
+Postolache Alexandru-Gabriel
+			
+Mai intai voi explica conceptele de poo:
+	1) mostenirea: Am luat clasele Bicycle, Truck, Car
+si Motorcycle care mostenesc clasa Vehicle, cat si clasele
+Jam, Traffic si Accident care mostenesc TrafficJam, deoarece
+sunt ambuteiaje. Toate clasele enumerate mostenesc campuri sau
+metode ale clasei parinti pe care le au in comun 
+la care se mai adauga campurile si metodele lor specifice.
+	2) polimorfismul: Am luat in clasa Vehicul metoda setAtributes
+care are ac signatura, dar face altceva pt fiecare copil al lui
+Vehicul. Un alt exemplu de polimorfism este definirea celor 2
+constructori diferizi din clasa statica Element care se gaseste
+in clasa Priority Queue.
+	3) abstractizare: Am luat clasa abstracta Vehicul in care am
+definit metoda abstracta setAtributes pe care am definit o in
+fiecare clasa copil caci fiecare clasa copil are alte atribute
+de setat, gasite in tabelul din enuntul temei.
+
+Apoi o sa explic restul codului pe clase:
+
+	Clasa TrafficJam care este parintele claselor Jam, Accident,
+Traffic, fiecare clasa avand campurile specifice, geterele si
+constructorii.
+	Clasa abstracta Vehicle este parintele claselor ce denumesc
+vehicule.
+	Clasa Street este clasa care def un obiect de tip strada.
+	Clasa Graph este clasa care defineste intreaga harta. Are un
+array numit veciniNoduri care retine pe randul i destinatiile
+de la i la j daca exista(se marcheaza cu 1). Mai are 2 array-uri
+care retin toate strazile si restrictiile de tip Ambuteiaj.
+	Functii:
+	-addStreet: adauga o strada in vectorul de strazi pe prima
+pozitie goala intalnita.
+	-getStreet: cauta o anumita strada in vect de strazi si daca
+exista si respecta gabaritul vehicului o returneaza, altfel null.
+	-costAmbuteiaj: calculeaza costul tuturor ambuteiajelor
+de pe o strada. Trb verificat tipul obiectului Ambuteiaj deoarece
+costul unuia este interpretat ca timp in cazul blocajelor si
+traficului.
+	-addRestriction: adauga o restrictie de tip Ambuteiaj pe prima
+pozitie goala gasita i.
+
+	Clasa PriorityQueue defineste coada noastra a caror elemente
+contin distanta pana la nod si ca val au costul drumului pana acolo.
+Aceste elemente sunt definite de clasa interna statica Element.
+Clasa PriorityQueue are un camp array numit "sir" in care retinem
+in ordine nodurile prin care am trecut si unul "vec" in care retinem
+printele unui nod de ex pt vec[i]=j, parintele lui i e j. De asemenea
+avem nevoie si de graful in care sunt stocate informatiile si
+constructorul care initializeaza coada cu un element gol(cu val -1).
+	Functii:
+	-drive : Functia din cerinta care practic aplica alg Dijkstra si
+scire in map.out costul. Am ales o sa apartina clasei cozii caci
+aveam nevoie si de coada si de graf(care este camp al cozii).
+Fct functioneaza in felul urmator: Cat timp se gaseste un cost
+de drum care duce la nodul final se aplica fct getMinRide, recalculate
+si cost se recalculeaza. getMinRide alege elementul cu valoarea 
+minimia din tabelul de la Dijkstra si recalculate recalculeaza
+restul valorilor elementelor acum ca ult nod parcurs s-a schimbat.
+Dupa se scrie in fisierul map.out concluzia. Daca costul e infinit
+inseamna ca nu se poate ajunge la destinatie.
+	-adauga: adauga un element in coada in fct de valoarea lui a.i.
+coada sa fie in ord cresc.
+	-stopDijkstra: ne spune cand sa ne oprim, at cand elementul
+destinatie devine varf si are deci val minima din coada pe care o
+returnam.
+	-printTraseu: printeaza traseul de la nodul start pana la end.
+Se gaseste traseul luand toti parintii de la nodul destinatie,
+care duc la nodul start. Ii adaug intr-un array si afisez in ordine
+inversa.
+	-getMinRide: selecteaza el cu costul minim. Mai intai gasim
+ult nod selectat si il setam ca parinte tututot elementelor care
+si au schimbat costul din infinite in unul normal. Dupa setam
+noul minim ca nod parcurs si ii salvam valoarea ca ultimul cost
+minim gasit pana acum. Dupa el din vf se elimina caci a fost
+deja parcurs.
+	-elimina: elimina elementul cu valoarea data de parametru
+din coada in fct de pozitia lui.
+	-esteVida : ne spune daca coada e vida. coada vida are
+primul element null.
+	-Preia : coada noastra ia elementele legate ale cozii aux
+	-recalculate : recalculeaza noile valori ale elementelor
+tinand cont ca s-a mai parcurs un nod. Gasim ultimul nod
+selectat si pt fiecare element ramas in coada(pe care il
+accesam eliminandu-l) recalculam noua valoare care este egala
+cu ultimulcost+costul parcurgerii strazii daca exista de la
+ult nod selectat la nodul elementului respectiv. Daca noua
+valoare este mai mica salvam nodul in coada aux cu noua valoare,
+altfel il salvam asa cum era. La final coada noastra ia inapoi
+noile elemente de la coada aux.
+	-initializeSir: initializeaza sirul nodurilor parcurse,
+alocandu-l si dupa setand nodul de start ca parcurs. -1 este
+folosit la a marca un loc liber in sir.
+	-initializeVec: initializeaza sirul parintilor, alocandu-l
+si dupa folosim -1 ca sa marcam ca un nod nu are parinte inca.
